@@ -38,39 +38,71 @@ var items = [
 var Tmap = Vue.component('tmap', 
 {
 	template: `
-		<b-table striped hover :items="items"></b-table>
+	<b-container fluid>
+			<b-img center  src="./assets/png/tzmap.png" fluid-grow alt="Часовые пояса России" />
+	</b-container>
 	`
 });
 
 var Asoz = Vue.component('asoz', 
 {
 	template: `
-		<b-card
-				tag="article"
-				class="mb-12"
-				style="height: 99%">
-
-			<b-button-toolbar aria-label="Toolbar with button groups and input groups">
-				<b-button-group size="sm" class="mx-1">
-					<b-btn><span class="oi" data-glyph="magnifying-glass" title="icon magnifying-glass" aria-hidden="true"></span></b-btn>
-					<b-btn>Edit</b-btn>
-				</b-button-group>
-				<b-input-group size="sm" class="w-25 mx-1" prepend="$" append=".00">
-					<b-form-input value="100" class="text-right"></b-form-input>
-				</b-input-group>
-				<b-input-group  size="sm" class="w-25 mx-1" prepend="Size">
-					<b-form-select value="Medium" :options="['Large','Medium','Small']"></b-form-select>
-				</b-input-group>
-				<b-button-group  size="sm" class="mx-1">
-					<b-btn>Save</b-btn>
-					<b-btn>Cancel</b-btn>
-				</b-button-group>
+	<b-container fluid>
+		<b-row style="padding: 2px;"><b-col sm="12">
+			<b-button-toolbar class="mb-12" aria-label="Toolbar with button groups and input groups">
+				<b-input-group class="input-group-sm w-100">
+					<b-input-group-prepend>
+						<b-btn variant="outline-secondary" v-on:click="getAsoz"><span class="oi" data-glyph="magnifying-glass" title="icon magnifying-glass" aria-hidden="true"></span></b-btn>
+					</b-input-group-prepend>
+					<b-form-input class="w-25" placeholder="Фамилия Имя Отчество" v-model="sfio" @keydown.enter.native="getAsoz"></b-form-input>
+					<b-input-group-append>
+						<b-btn size="sm" variant="outline-secondary" v-on:click="sfio=''"><span class="oi" data-glyph="circle-x" title="Очистить" aria-hidden="true"></span></b-btn>
+					</b-input-group-append>
+				</b-input-group>	
 			</b-button-toolbar>
-			<div class="scrolling-wrapper" style="height: 85%">
-			
-			</div>
-		</b-card>
+		</b-col></b-row>
+		<b-row style="padding: 2px;"><b-col sm="12">
+			<b-input-group size="sm" class="mb-3" prepend="Фильтр">
+				<b-form-input v-model="forg" placeholder="Предприятие" @keyup.native="farm=''; fdata('forg')"/>
+				<b-input-group-append>
+					<b-btn size="sm" variant="outline-secondary" v-on:click="forg=''; fdata('forg')"><span class="oi" data-glyph="circle-x" title="Очистить" aria-hidden="true"></span></b-btn>
+				</b-input-group-append>
+				<b-form-input v-model="farm" placeholder="ИС/Арм" @keyup.native="forg=''; fdata('farm')" />
+				<b-input-group-append>
+					<b-btn size="sm" variant="outline-secondary" v-on:click="farm=''; fdata('farm')"><span class="oi" data-glyph="circle-x" title="Очистить" aria-hidden="true"></span></b-btn>
+				</b-input-group-append>
+			</b-input-group>	
+		</b-col></b-row>
+		<div class="scrolling-wrapper" style="height: 80%">
+			<b-table striped hover :items="items"></b-table>
+		</div>
+	</b-container>
 	`
+	,data ()
+	{
+		return {sfio: '', forg: '', farm: '', items: items, fitem: ''}
+	}
+	,methods: 
+	{
+		getAsoz() 
+		{
+			var sf=this.sfio.replace(/[ ]+/g, ".").replace(/[.]+/g, ".").replace( /\.$/gi , "" ).split('.');
+			//console.log('sfio - ',this.sfio,' - ',sf);
+		},
+		fdata: function(el)
+		{
+			var fitem = el,
+				forg = this.forg,
+				farm = this.farm;
+			this.items = items.filter(function(el) 
+			{
+				var sel = fitem === 'forg' ? el.first_name : el.last_name;
+				var query = fitem === 'forg' ? forg : farm;
+				//console.log(fitem,' - ',sel,' - ',query);
+				return sel.toLowerCase().indexOf(query.trimStart().toLowerCase()) > -1;
+			});
+		}
+	}
 });
 
 const routes = [

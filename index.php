@@ -9,19 +9,23 @@
 			{
 				overflow-x: hidden;
 				overflow-y: auto;
-				white-space: nowrap;
+			}
+			
+			table > thead 
+			{
+				display:none !important;
 			}
 		</style>
 	<body>
 		<div id="app">
-			<b-navbar toggleable="md" variant="primary" type="dark" variant="info" position="fixed">
+			<b-navbar toggleable="md" variant="info" type="dark" position="fixed">
 				<b-navbar-brand href="#">ЦТС Инфр</b-navbar-brand>
 				<b-navbar-nav>
 					<b-nav-item to="/asoz">АСОЗ</b-nav-item>
 					<b-nav-item to="/tmap">Часовые пояса</b-nav-item>
 				</b-navbar-nav>
 			</b-navbar>
-			<div class="scrolling-wrapper" style="height: 85%">
+			<div class="scrolling-wrapper" style="height: 85%;">
 				<router-view></router-view>
 			</div>
 		</div>
