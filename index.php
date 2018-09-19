@@ -3,6 +3,7 @@
 		<title>ЦТС Инфр</title>
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	</head>
+		<link href="./assets/css/bootstrap-glyphicons.min.css" rel="stylesheet" type="text/css" />
 		<style>
 			.scrolling-wrapper 
 			{
@@ -29,7 +30,7 @@
 		<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 		<script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-		<script src="app.js"></script>
+		<script src="./assets/js/app.js"></script>
 	</body>
 </html>
 
