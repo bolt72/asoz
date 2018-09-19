@@ -52,7 +52,7 @@ var Asoz = Vue.component('asoz',
 
 			<b-button-toolbar aria-label="Toolbar with button groups and input groups">
 				<b-button-group size="sm" class="mx-1">
-					<b-btn><span class="glyphicons glyphicons-home"></span></b-btn>
+					<b-btn><span class="oi" data-glyph="magnifying-glass" title="icon magnifying-glass" aria-hidden="true"></span></b-btn>
 					<b-btn>Edit</b-btn>
 				</b-button-group>
 				<b-input-group size="sm" class="w-25 mx-1" prepend="$" append=".00">

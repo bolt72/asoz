@@ -3,7 +3,7 @@
 		<title>ЦТС Инфр</title>
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>	</head>
-		<link href="./assets/css/bootstrap-glyphicons.min.css" rel="stylesheet" type="text/css" />
+		<link href="./assets/css/open-iconic.css" rel="stylesheet">
 		<style>
 			.scrolling-wrapper 
 			{
